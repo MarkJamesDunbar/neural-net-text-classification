@@ -1,0 +1,13 @@
+setup.py
+kannadamnist_module/__init__.py
+kannadamnist_module/model.py
+kannadamnist_module/model_run.py
+kannadamnist_module.egg-info/PKG-INFO
+kannadamnist_module.egg-info/SOURCES.txt
+kannadamnist_module.egg-info/dependency_links.txt
+kannadamnist_module.egg-info/top_level.txt
+kannadamnist_module/config/__init__.py
+kannadamnist_module/config/config.py
+kannadamnist_module/model/__init__.py
+kannadamnist_module/my_utils/__init__.py
+kannadamnist_module/my_utils/my_utils.py

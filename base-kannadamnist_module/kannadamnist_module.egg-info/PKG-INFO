@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: kannadamnist-module
+Version: 0.0.1
+Summary: Kannada MNIST CNN model
+Author: Mark Dunbar
+Author-email: marjamdun@hotmail.co.uk
+Keywords: python,pytorch,mnist
+Classifier: Intended Audience :: Education
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows
+
+Pytorch Neural Network aimed to classify letters from the Kannada MNIST dataset
