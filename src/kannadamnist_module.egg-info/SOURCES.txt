@@ -1,7 +1,5 @@
 setup.py
 kannadamnist_module/__init__.py
-kannadamnist_module/model.py
-kannadamnist_module/model_run.py
 kannadamnist_module.egg-info/PKG-INFO
 kannadamnist_module.egg-info/SOURCES.txt
 kannadamnist_module.egg-info/dependency_links.txt
