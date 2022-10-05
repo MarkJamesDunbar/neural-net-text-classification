@@ -60,3 +60,34 @@ val_trans = transforms.Compose(([
     transforms.ToPILImage(),
     transforms.ToTensor(),
 ]))
+
+# Custom class for the new Kannada MNIST dataset on Kaggle
+# Images come in a csv, not as actual images
+# Training set is split before given to this class
+
+class KannadaDataSet(torch.utils.data.Dataset):
+    # images df, labels df, transforms
+    # uses labels to determine if it needs to return X & y or just X in __getitem__
+    def __init__(self, images, labels, transforms=None):
+        self.X = images
+        self.y = labels
+        self.transforms = transforms
+                    
+    def __len__(self):
+        return len(self.X)
+    
+    def __getitem__(self, i):
+        data = self.X.iloc[i, :] # gets the row
+        # reshape the row into the image size 
+        # (numpy arrays have the color channels dim last)
+        data = np.array(data).astype(np.uint8).reshape(28, 28, 1) 
+        
+        # perform transforms if there are any
+        if self.transforms:
+            data = self.transforms(data)
+        
+        # if !test_set return the label as well, otherwise don't
+        if self.y is not None: # train/val
+            return (data, self.y[i])
+        else: # test
+            return data

@@ -14,6 +14,7 @@ DIG_FILE="Dig-MNIST.csv"
 # Data Config
 
 NUM_CLASSES = 10
+CLASS_NAMES = {0:"omdu", 1:"eradu", 2:"muru", 3:"nalku", 4:"aidu", 5:"aru", 6:"elu", 7:"emtu", 8:"ombattu", 9:"hattu"}
 IMAGE_SIZE = 28
 
 # Model Config
