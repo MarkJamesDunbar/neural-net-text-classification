@@ -14,24 +14,24 @@ from sklearn.model_selection import train_test_split
 
 from config import config
 from my_utils import my_utils as mu
+from my_utils import model_train
+from model import model
 
-# Gets the GPU if there is one, otherwise the cpu
+
+# Use the GPU if available, otherwise select the cpu (default)
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print("Current device type: ", device)
 
-
-
-
 ### DATA LOADING
-
-train_set = mu.load_dataset(config.TRAIN_FILE)
-test_images = mu.load_dataset(config.TEST_FILE)
-val_set = mu.load_dataset(config.DIG_FILE)
+train_set = mu.load_dataset(config.TRAIN_FILE, config.DATAPATH)
+test_images = mu.load_dataset(config.TEST_FILE, config.DATAPATH)
+val_set = mu.load_dataset(config.DIG_FILE, config.DATAPATH)
 train_set = pd.concat([train_set, val_set], axis=0)
 
+# Split the data into train/test splits - splitsize defined in config
 train_images, val_images, train_labels, val_labels = train_test_split(train_set.iloc[:, 1:], 
                                                                      train_set.iloc[:, 0], 
-                                                                     test_size=0.1)
+                                                                     test_size=config.SPLITSIZE)
 
 # Reset index values
 train_images.reset_index(drop=True, inplace=True)
@@ -39,16 +39,13 @@ val_images.reset_index(drop=True, inplace=True)
 train_labels.reset_index(drop=True, inplace=True)
 val_labels.reset_index(drop=True, inplace=True)
 
-# Remove the ID column
+# Remove ID column
 test_images = test_images.iloc[:, 1:]
 
-# Plot a sample image
-mu.plot_image(train_labels[0], train_images.iloc[[0], :], config.OUTPUT)
+# Plot a sample image, save it to the output folder
+mu.plot_image(train_labels[0], config.CLASS_NAMES, train_images.iloc[[0], :], config.OUTPUT)
 
-
-
-## DATA AUGMENTATION
-
+## Define transform steps to convert csv data to images, and augment training data
 train_trans = transforms.Compose(([
     transforms.ToPILImage(),
     transforms.RandomCrop(config.IMAGE_SIZE),
@@ -61,33 +58,41 @@ val_trans = transforms.Compose(([
     transforms.ToTensor(),
 ]))
 
-# Custom class for the new Kannada MNIST dataset on Kaggle
-# Images come in a csv, not as actual images
-# Training set is split before given to this class
+# Perform our transforms and augmentations
+train_set = mu.KannadaDataSet(train_images, config.IMAGE_SIZE, train_labels, train_trans)
+val_set = mu.KannadaDataSet(val_images, config.IMAGE_SIZE, val_labels, val_trans)
+test_set = mu.KannadaDataSet(test_images, config.IMAGE_SIZE, None, val_trans)
 
-class KannadaDataSet(torch.utils.data.Dataset):
-    # images df, labels df, transforms
-    # uses labels to determine if it needs to return X & y or just X in __getitem__
-    def __init__(self, images, labels, transforms=None):
-        self.X = images
-        self.y = labels
-        self.transforms = transforms
-                    
-    def __len__(self):
-        return len(self.X)
-    
-    def __getitem__(self, i):
-        data = self.X.iloc[i, :] # gets the row
-        # reshape the row into the image size 
-        # (numpy arrays have the color channels dim last)
-        data = np.array(data).astype(np.uint8).reshape(28, 28, 1) 
-        
-        # perform transforms if there are any
-        if self.transforms:
-            data = self.transforms(data)
-        
-        # if !test_set return the label as well, otherwise don't
-        if self.y is not None: # train/val
-            return (data, self.y[i])
-        else: # test
-            return data
+# create network on available device
+network = model.Network().to(device)
+
+training_dataloader = DataLoader(train_set, batch_size=config.BATCH_SIZE, shuffle=True)
+validation_dataloader = DataLoader(val_set, batch_size=config.BATCH_SIZE, shuffle=False)
+
+# Define our optimiser: we're using Adam
+optimizer = optim.Adam(network.parameters(), lr=config.INITIAL_LR)
+
+# Adding a Learning Rate Scheduler
+scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.9)
+
+lrs = []
+val_loss = []
+val_acc = []
+
+
+# Run our Epoch cycles
+for epoch in range(config.EPOCHS):
+    # Print epoch cycle
+    print(f"Epoch Cycle: {epoch+1}")
+
+    # Train the model, and append the current learning rate
+    lrs.append(model_train.train_model(network, device, optimizer, scheduler, training_dataloader, config.BATCH_SIZE))
+
+
+    # Evaluate the model, return the validation loss and validation accuracy
+    loss, acc = model_train.eval_model(network, device, validation_dataloader, len(val_images), config.BATCH_SIZE)
+    val_loss.append(loss)
+    val_acc.append(acc)
+
+print("woooo")
+print(lrs)
