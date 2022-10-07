@@ -4,7 +4,7 @@
 # Filepath Config
 
 DATAPATH="./datasets/"
-OUTPUT="./output/"
+OUTPUT="output/"
 
 TRAIN_FILE="train.csv"
 TEST_FILE="test.csv"

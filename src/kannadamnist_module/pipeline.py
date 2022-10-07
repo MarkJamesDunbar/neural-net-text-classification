@@ -7,14 +7,14 @@ import torchvision
 from torchvision import transforms
 from torch.utils.data import DataLoader
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from config import config
-from my_utils import my_utils as mu
+from my_utils import data_utils as mu
 from my_utils import model_train
+from my_utils import model_eval
 from model import model
 
 
@@ -88,11 +88,24 @@ for epoch in range(config.EPOCHS):
     # Train the model, and append the current learning rate
     lrs.append(model_train.train_model(network, device, optimizer, scheduler, training_dataloader, config.BATCH_SIZE))
 
-
     # Evaluate the model, return the validation loss and validation accuracy
-    loss, acc = model_train.eval_model(network, device, validation_dataloader, len(val_images), config.BATCH_SIZE)
+    loss, acc = model_eval.eval_model(network, device, validation_dataloader, len(val_images), config.BATCH_SIZE)
     val_loss.append(loss)
     val_acc.append(acc)
 
-print("woooo")
-print(lrs)
+
+# CONFUSION MATRIX GENERATION
+
+# Make sure the model is int he correct mode (eval)
+network.eval()
+
+# Create empty tensor for predictions
+predictions = torch.LongTensor().to(device)
+
+# Use model to generate predictions
+for images, _ in validation_dataloader:
+    preds = network(images.to(device))
+    predictions = torch.cat((predictions, preds.argmax(dim=1)), dim=0)
+
+# Plot confusion Matrix
+model_eval.confusion_matrix(config.NUM_CLASSES, val_labels, predictions, config.OUTPUT)

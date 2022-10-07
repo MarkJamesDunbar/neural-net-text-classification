@@ -16,7 +16,7 @@ def plot_image(label, classnames, image, saveloc):
     """Plot an example image and class from the dataset, and save it to file"""
     fig1 = plt.figure(figsize=(6,6));
     fig1.tight_layout()
-    plt.title(f"Class: {label}, Name: {classnames[label-1]}")
+    plt.title(f"Class: {label}, Name: {classnames[label]}")
     plt.imshow(image.to_numpy().astype(np.uint8).reshape(28, 28), cmap='gray')
     plt.savefig(saveloc+"sample.png")
     
