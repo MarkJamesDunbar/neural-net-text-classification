@@ -105,25 +105,16 @@ for epoch in range(config.EPOCHS):
 # Make sure the model is int he correct mode (eval)
 network.eval()
 
-print("1")
 # Create empty tensor for predictions
 predictions = torch.LongTensor().to(device)
-
-print("2")
 
 # Use trained model to generate predictions
 for images, _ in validation_dataloader:
     preds = network(images.to(device))
     predictions = torch.cat((predictions, preds.argmax(dim=1)), dim=0)
 
-print("3")
-
 # Plot confusion matrix
 model_eval.confusion_matrix(config.NUM_CLASSES, val_labels, predictions, config.OUTPUT)
 
-print("4")
-
 # Plot train acc/loss curve
 model_eval.train_loss_acc_curve(config.EPOCHS, val_loss, val_acc, config.OUTPUT)
-
-print("5")

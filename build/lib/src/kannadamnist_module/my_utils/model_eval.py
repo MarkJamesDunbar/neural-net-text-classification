@@ -60,11 +60,10 @@ def train_loss_acc_curve(epochs, loss, acc, output_folder):
     plt.title("Neural Network Training Loss/Accuracy Curve")
     plt.xlabel("Epoch")
     plt.ylabel("Loss/Acc Value")
-    # plt.xlim(10)
-    # plt.ylim(1)
+    plt.xlim(10)
+    plt.ylim(1)
 
-    plt.plot(epoch_num, loss, 'bo')
-    plt.plot(epoch_num, acc, 'ro')
+    plt.plot(epoch_num, loss)
+    plt.plot(epoch_num, acc)
     plt.savefig(output_folder + "model_evaluation/train_loss_acc_curve")
-
 
