@@ -71,14 +71,14 @@ test_set = mu.KannadaDataSet(test_images, config.IMAGE_SIZE, None, val_trans)
 ##################
 
 # Create network on available device
-network = model.Network().to(device)
+net = model.Network().to(device)
 
-# Create dataset dataloaders
+# Generate training/validation dataloaders
 training_dataloader = DataLoader(train_set, batch_size=config.BATCH_SIZE, shuffle=True)
 validation_dataloader = DataLoader(val_set, batch_size=config.BATCH_SIZE, shuffle=False)
 
 # Define our optimiser: we're using Adam
-optimizer = optim.Adam(network.parameters(), lr=config.INITIAL_LR)
+optimizer = optim.Adam(net.parameters(), lr=config.INITIAL_LR)
 
 # Define a Learning Rate Scheduler
 scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.9)
@@ -87,14 +87,14 @@ lrs = []
 val_loss = []
 val_acc = []
 
-# Run our Epoch cycles
+# Run our epoch cycles
 for epoch in range(config.EPOCHS):
     # Print epoch cycle
     print(f"Epoch Cycle: {epoch+1}")
     # Train the model, and append the current learning rate
-    lrs.append(model_train.train_model(network, device, optimizer, scheduler, training_dataloader, config.BATCH_SIZE))
+    lrs.append(model_train.train_model(net, device, optimizer, scheduler, training_dataloader, config.BATCH_SIZE))
     # Evaluate the model, return the validation loss and validation accuracy
-    loss, acc = model_eval.eval_model(network, device, validation_dataloader, len(val_images), config.BATCH_SIZE)
+    loss, acc = model_eval.eval_model(net, device, validation_dataloader, len(val_images), config.BATCH_SIZE)
     val_loss.append(loss)
     val_acc.append(acc)
 
@@ -103,27 +103,21 @@ for epoch in range(config.EPOCHS):
 ####################################
 
 # Make sure the model is int he correct mode (eval)
-network.eval()
+net.eval()
 
-print("1")
 # Create empty tensor for predictions
 predictions = torch.LongTensor().to(device)
 
-print("2")
-
 # Use trained model to generate predictions
 for images, _ in validation_dataloader:
-    preds = network(images.to(device))
+    preds = net(images.to(device))
     predictions = torch.cat((predictions, preds.argmax(dim=1)), dim=0)
-
-print("3")
 
 # Plot confusion matrix
 model_eval.confusion_matrix(config.NUM_CLASSES, val_labels, predictions, config.OUTPUT)
 
-print("4")
+# Plot train loss curve
+model_eval.train_loss_curve(config.EPOCHS, val_loss, config.OUTPUT)
 
-# Plot train acc/loss curve
-model_eval.train_loss_acc_curve(config.EPOCHS, val_loss, val_acc, config.OUTPUT)
-
-print("5")
+# Plot train acc curve
+model_eval.train_acc_curve(config.EPOCHS, val_acc, config.OUTPUT)

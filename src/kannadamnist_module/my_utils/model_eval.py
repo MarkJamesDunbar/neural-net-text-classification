@@ -52,19 +52,29 @@ def confusion_matrix(num_classes, validation_labels, predictions, output_folder)
     plt.title("Neural Network Confusion Matrix")
     plt.savefig(output_folder + "model_evaluation/confusion_matrix")
 
-def train_loss_acc_curve(epochs, loss, acc, output_folder):
+def train_loss_curve(epochs, loss, output_folder):
     """Generate and save a training loss/acc curve for the model's training"""
-    epoch_num = range(epochs+1)
-    
+    epoch_num = list(range(1, epochs+1))
+
     plt.figure(figsize=(12,7))
-    plt.title("Neural Network Training Loss/Accuracy Curve")
+    plt.title("Neural Network Training Loss Curve")
     plt.xlabel("Epoch")
-    plt.ylabel("Loss/Acc Value")
-    # plt.xlim(10)
-    # plt.ylim(1)
+    plt.ylabel("Loss Value")
+    plt.grid()
+    plt.plot(epoch_num, loss, 'b-')
+    plt.xticks(epoch_num)
+    plt.savefig(output_folder + "model_evaluation/train_loss_curve")
 
-    plt.plot(epoch_num, loss, 'bo')
-    plt.plot(epoch_num, acc, 'ro')
-    plt.savefig(output_folder + "model_evaluation/train_loss_acc_curve")
+def train_acc_curve(epochs, acc, output_folder):
+    """Generate and save a training accuracy curve for the model's training"""
+    epoch_num = list(range(1, epochs+1))
 
-
+    plt.figure(figsize=(12,7))
+    plt.title("Neural Network Training Loss Curve")
+    plt.xlabel("Epoch")
+    plt.ylabel("Accuracy Value (%)")
+    plt.ylim(97,100)
+    plt.grid()
+    plt.plot(epoch_num, acc, 'r-')
+    plt.xticks(epoch_num)
+    plt.savefig(output_folder + "model_evaluation/train_acc_curve")
