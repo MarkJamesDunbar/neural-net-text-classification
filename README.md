@@ -9,7 +9,7 @@ To create the virtual environment, run:
 `python -m venv <venv name>`
 
 To activate the virtual environment, run:
-`\<venv name>/Scripts/activate.bat`
+`<venv name>/Scripts/activate.bat`
 
 And to use an existing virtual environment, run:
 `source <venv name>/Scripts/activate`
@@ -19,7 +19,7 @@ Create the virtual environment by running
 `python -m venv <venv name>`
 
 To activate the virtual environment, run:
-`/<venv name>/bin/activate`
+`<venv name>/bin/activate`
 
 And to use an existing virtual environment, run:
 `source venv/bin/activate`
