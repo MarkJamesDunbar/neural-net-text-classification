@@ -1,28 +1,28 @@
 # Neural-Network-for-Kannada-MNIST-Classification
- Kannada MNIST Neural Network Classifier
+ Kannada MNIST Convolutional Neural Network for the Kannada MNIST challenge on kaggle, found here: https://www.kaggle.com/competitions/Kannada-MNIST
 
 ## Setup
 ### Virtual Environment
 Create a virtual environment within the inside the `Neural-Network-for-Kannada-MNIST-Classification` directory before installing dependencies.
 
 #### Windows
-To create the virtual environment, run:
+* To create the virtual environment, run:
 `python -m venv <venv name>`
 
-To activate the virtual environment, run:
+* To activate the virtual environment, run:
 `<venv name>/Scripts/activate.bat`
 
-And to use an existing virtual environment, run:
+* And to use an existing virtual environment, run:
 `source <venv name>/Scripts/activate`
 
 #### Mac OS
-Create the virtual environment by running
+* Create the virtual environment by running
 `python -m venv <venv name>`
 
-To activate the virtual environment, run:
+* To activate the virtual environment, run:
 `<venv name>/bin/activate`
 
-And to use an existing virtual environment, run:
+* And to use an existing virtual environment, run:
 `source venv/bin/activate`
 
 ### Install requirements
@@ -31,6 +31,11 @@ To set up the requirements for this python package, please run:
 or
 `pip install -e .`
 inside the `Neural-Network-for-Kannada-MNIST-Classification` directory
+
+## File Structure
+The entire python package is contained within the `src` directory. Within src, the directory `kannadamnist_module` contains the entire model, pipeline and related utilities:
+
+*
 
 ## Running the model training and validation pipeline
 To run the pipeline, use the following command from the `Neural-Network-for-Kannada-MNIST-Classification` directory:
@@ -51,7 +56,7 @@ The model will output several files in the directory `/src/kannadamnist_module/o
 
 ## Kaggle submission
 The kaggle notebook used to test and produce this CNN python package can be found at:
-# LINK
+https://www.kaggle.com/code/markdunbar/kannadamnist-cnn/edit/run/107590957
 
 The kaggle score for this model is shown below:
-# IMAGE
+![image](https://user-images.githubusercontent.com/57494763/195201716-44566628-6f87-4f95-b214-395703c1aa7d.png)
