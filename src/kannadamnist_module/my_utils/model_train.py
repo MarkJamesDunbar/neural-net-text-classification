@@ -3,6 +3,7 @@ from . import model_eval
 
 def train_model(network, device, optimizer, scheduler, training_data, batch_size):
     """Trains the model using the training data"""
+
     epoch_loss = 0
     epoch_correct = 0
     network.train() # training mode
@@ -17,9 +18,7 @@ def train_model(network, device, optimizer, scheduler, training_data, batch_size
         optimizer.step() # updates weights
         
         epoch_loss += loss.item() * batch_size
-        epoch_correct += model_eval.get_num_correct(y_, y)    
-
+        epoch_correct += get_num_correct(y_, y)    
+    
     scheduler.step()
-    return optimizer.param_groups[0]["lr"]
-
-
+    return optimizer.param_groups[0]["lr"], epoch_loss, epoch_correct/len(training_data)
