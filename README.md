@@ -1,5 +1,5 @@
 # Neural-Network-for-Kannada-MNIST-Classification
- Kannada MNIST Neural Network Classifier
+ Kannada MNIST Convolutional Neural Network for the Kannada MNIST challenge on kaggle, found here: https://www.kaggle.com/competitions/Kannada-MNIST
 
 ## Setup
 ### Virtual Environment
@@ -31,6 +31,11 @@ To set up the requirements for this python package, please run:
 or
 `pip install -e .`
 inside the `Neural-Network-for-Kannada-MNIST-Classification` directory
+
+## File Structure
+The entire python package is contained within the `src` directory. Within src, the directory `kannadamnist_module` contains the entire model, pipeline and related utilities:
+
+*
 
 ## Running the model training and validation pipeline
 To run the pipeline, use the following command from the `Neural-Network-for-Kannada-MNIST-Classification` directory:
