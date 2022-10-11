@@ -1,10 +1,11 @@
 # Neural-Network-for-Kannada-MNIST-Classification
  Kannada MNIST Neural Network Classifier
 
-## Virtual Environment Setup
+## Setup
+### Virtual Environment
 Create a virtual environment within the inside the `Neural-Network-for-Kannada-MNIST-Classification` folder before installing dependencies.
 
-### Windows
+#### Windows
 To create the virtual environment, run:
 `python -m venv <venv name>`
 
@@ -14,7 +15,7 @@ To activate the virtual environment, run:
 And to use an existing virtual environment, run:
 `source <venv name>/Scripts/activate`
 
-### Mac OS
+#### Mac OS
 Create the virtual environment by running
 `python -m venv <venv name>`
 
@@ -24,10 +25,30 @@ To activate the virtual environment, run:
 And to use an existing virtual environment, run:
 `source venv/bin/activate`
 
-## Install requirements
+### Install requirements
 To set up the requirements for this python package, please run:
 `python setup.py install`
 
-## Run model training and validation pipeline
+## Running the model training and validation pipeline
 To run the pipeline, use the following command from the `Neural-Network-for-Kannada-MNIST-Classification` folder:
 `python src/kannadamnist_module/pipeline.py`
+
+## Output files
+The model will output several files in the directory `/src/kannadamnist_module/output`. Here there are 3 directories:
+ 
+* `sample_data` - a sample image and related class label for one of the kannada character images in the dataset
+
+* `model_evaluation` - 4 plots:
+    * The model's confusion matrix on the validation data
+    * The model's loss curve on the training and validation data over epochs
+    * The model's accuracy curve on the trainind and validation data over all epochs
+    * The model's change in learning rate over all epochs
+
+* `submission_file` - a csv containing the image ID and model prediction for the kaggle test data. This is the file submitted to kaggle to obtain the kaggle score for this model.
+
+## Kaggle submission
+The kaggle notebook used to test and produce this CNN python package can be found at:
+# LINK
+
+The kaggle score for this model is shown below:
+# IMAGE
