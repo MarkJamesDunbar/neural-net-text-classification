@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.nn.functional as F
 import pandas as pd
@@ -64,7 +65,7 @@ def confusion_matrix(num_classes, validation_labels, predictions, datapath):
     plt.figure(figsize=(12,7))
     sn.heatmap(df_cm, annot=True)
     plt.title("Neural Network Confusion Matrix", fontsize=20)
-    plt.savefig(datapath + "model_evaluation/confusion_matrix")
+    plt.savefig(os.path.join(datapath,"model_evaluation","confusion_matrix"))
 
 def learning_rate_curve(epochs, lrs, datapath):
     """Generate a plot of the learning rate with each epoch"""
@@ -79,7 +80,7 @@ def learning_rate_curve(epochs, lrs, datapath):
     plt.grid()
     plt.plot(epoch_num, lrs, 'g-')
     plt.xticks(epoch_num)
-    plt.savefig(datapath + "model_evaluation/learning_rate_curve")
+    plt.savefig(os.path.join(datapath,"model_evaluation","learning_rate_curve"))
 
 def loss_curves(epochs, train_loss, val_loss, datapath):
     """Generate and save a training loss/acc curve for the model's training"""
@@ -96,7 +97,7 @@ def loss_curves(epochs, train_loss, val_loss, datapath):
     plt.plot(epoch_num, val_loss, 'r-', label='validation loss')
     plt.legend(loc="upper right")
     plt.xticks(epoch_num)
-    plt.savefig(datapath + "model_evaluation/loss_curves")
+    plt.savefig(os.path.join(datapath,"model_evaluation","loss_curves"))
 
 
 def acc_curves(epochs, train_acc, val_acc, datapath):
@@ -115,4 +116,4 @@ def acc_curves(epochs, train_acc, val_acc, datapath):
     plt.plot(epoch_num, val_acc, 'r-', label='validation accuracy')
     plt.legend(loc="lower right")
     plt.xticks(epoch_num)
-    plt.savefig(datapath + "model_evaluation/acc_curves")
+    plt.savefig(os.path.join(datapath,"model_evaluation","acc_curves"))

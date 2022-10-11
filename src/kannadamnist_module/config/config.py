@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # Filepath Config
-DATAPATH="./datasets/"
-OUTPUT="./output/"
+DATAPATH="datasets"
+OUTPUT="output"
 TRAIN_FILE="train.csv"
 TEST_FILE="test.csv"
 SAMPLE_FILE ="sample_submission.csv"

@@ -1,3 +1,4 @@
+import os
 import torch
 import torch.optim as optim
 
@@ -165,4 +166,4 @@ submission_file = du.load_dataset(config.SAMPLE_FILE, config.DATAPATH)
 submission_file['label'] = predictions.cpu().numpy()
 
 # Save the dataframe as a new submission csv!
-submission_file.to_csv(config.OUTPUT + "submission_file/submission.csv", index=False)
+submission_file.to_csv(os.path.join(config.OUTPUT,"submission_file","submission.csv"), index=False)
