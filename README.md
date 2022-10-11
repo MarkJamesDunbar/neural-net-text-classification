@@ -51,7 +51,7 @@ The model will output several files in the directory `/src/kannadamnist_module/o
 
 ## Kaggle submission
 The kaggle notebook used to test and produce this CNN python package can be found at:
-# LINK
+https://www.kaggle.com/code/markdunbar/kannadamnist-cnn/edit/run/107590957
 
 The kaggle score for this model is shown below:
-# IMAGE
+![image](https://user-images.githubusercontent.com/57494763/195201716-44566628-6f87-4f95-b214-395703c1aa7d.png)
