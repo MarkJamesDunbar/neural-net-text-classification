@@ -18,7 +18,7 @@ def plot_image(label, classnames, image, datapath):
     fig1.tight_layout()
     plt.title(f"Class: {label}, Name: {classnames[label]}")
     plt.imshow(image.to_numpy().astype(np.uint8).reshape(28, 28), cmap='gray')
-    plt.savefig(datapath+"/sample_data/sample.png")
+    plt.savefig(datapath+"sample_data/sample.png")
     
 class KannadaDataSet(torch.utils.data.Dataset):
     """Class for handling input CSVs as images using PIL; also handles specified image augmentation"""
