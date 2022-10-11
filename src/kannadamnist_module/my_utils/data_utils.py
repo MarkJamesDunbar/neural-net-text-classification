@@ -1,3 +1,4 @@
+import os
 import torch 
 import pandas as pd
 import numpy as np
@@ -9,7 +10,7 @@ import matplotlib.pyplot as plt
 
 def load_dataset(file_name, datapath):
     """Read input CSV file for a given file name"""
-    data = pd.read_csv(datapath + file_name)
+    data = pd.read_csv(os.path.join(datapath,file_name))
     return data
 
 def plot_image(label, classnames, image, datapath):
@@ -18,7 +19,7 @@ def plot_image(label, classnames, image, datapath):
     fig1.tight_layout()
     plt.title(f"Class: {label}, Name: {classnames[label]}")
     plt.imshow(image.to_numpy().astype(np.uint8).reshape(28, 28), cmap='gray')
-    plt.savefig(datapath+"sample_data/sample.png")
+    plt.savefig(os.path.join(datapath,"sample_data","sample.png"))
     
 class KannadaDataSet(torch.utils.data.Dataset):
     """Class for handling input CSVs as images using PIL; also handles specified image augmentation"""
