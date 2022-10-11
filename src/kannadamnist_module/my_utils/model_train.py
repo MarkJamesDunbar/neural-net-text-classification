@@ -1,5 +1,5 @@
 import torch.nn.functional as F
-from model_eval import get_num_correct
+from . import model_eval as mle
 
 def train_model(network, device, optimizer, scheduler, training_data, batch_size):
     """Trains the model using the training data"""
@@ -18,7 +18,7 @@ def train_model(network, device, optimizer, scheduler, training_data, batch_size
         optimizer.step() # updates weights
         
         epoch_loss += loss.item() * batch_size
-        epoch_correct += get_num_correct(y_, y)    
+        epoch_correct += mle.get_num_correct(y_, y)    
     
     scheduler.step()
     return optimizer.param_groups[0]["lr"], epoch_loss, epoch_correct/len(training_data)

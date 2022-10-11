@@ -130,11 +130,14 @@ for images, _ in validation_dataloader:
 # Plot confusion matrix
 mle.confusion_matrix(config.NUM_CLASSES, val_labels, predictions, config.OUTPUT)
 
+# Plot Learning Rate Curve
+mle.learning_rate_curve(config.EPOCHS, lrs, config.OUTPUT)
+
 # Plot the model's training/validation loss curves
-mle.train_loss_curve(config.EPOCHS, train_loss, val_loss, config.OUTPUT)
+mle.loss_curves(config.EPOCHS, train_loss, val_loss, config.OUTPUT)
 
 # Plot model's training/validation accuracy curves
-mle.train_acc_curve(config.EPOCHS, train_acc, val_acc, config.OUTPUT)
+mle.acc_curves(config.EPOCHS, train_acc, val_acc, config.OUTPUT)
 
 ####################################
 # Model Submission File Generation #
@@ -162,4 +165,4 @@ submission_file = du.load_dataset(config.SAMPLE_FILE, config.DATAPATH)
 submission_file['label'] = predictions.cpu().numpy()
 
 # Save the dataframe as a new submission csv!
-submission_file.to_csv(config.OUTPUT + "submission/submission.csv", index=False)
+submission_file.to_csv(config.OUTPUT + "submission_file/submission.csv", index=False)

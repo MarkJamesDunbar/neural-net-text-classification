@@ -3,7 +3,7 @@
 
 ## Setup
 ### Virtual Environment
-Create a virtual environment within the inside the `Neural-Network-for-Kannada-MNIST-Classification` folder before installing dependencies.
+Create a virtual environment within the inside the `Neural-Network-for-Kannada-MNIST-Classification` directory before installing dependencies.
 
 #### Windows
 To create the virtual environment, run:
@@ -28,9 +28,12 @@ And to use an existing virtual environment, run:
 ### Install requirements
 To set up the requirements for this python package, please run:
 `python setup.py install`
+or
+`pip install -e .`
+inside the `Neural-Network-for-Kannada-MNIST-Classification` directory
 
 ## Running the model training and validation pipeline
-To run the pipeline, use the following command from the `Neural-Network-for-Kannada-MNIST-Classification` folder:
+To run the pipeline, use the following command from the `Neural-Network-for-Kannada-MNIST-Classification` directory:
 `python src/kannadamnist_module/pipeline.py`
 
 ## Output files

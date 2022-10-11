@@ -3,7 +3,7 @@
 
 # Filepath Config
 DATAPATH="./datasets/"
-OUTPUT="output/"
+OUTPUT="./output/"
 TRAIN_FILE="train.csv"
 TEST_FILE="test.csv"
 SAMPLE_FILE ="sample_submission.csv"
@@ -18,5 +18,5 @@ IMAGE_SIZE = 28
 # Model Config
 INITIAL_LR = 0.01
 BATCH_SIZE = 100
-EPOCHS = 5
+EPOCHS = 50
 
