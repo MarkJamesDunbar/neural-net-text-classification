@@ -36,6 +36,15 @@ inside the `Neural-Network-for-Kannada-MNIST-Classification` directory
 To run the pipeline, use the following command from the `Neural-Network-for-Kannada-MNIST-Classification` directory:
 `python src/kannadamnist_module/pipeline.py`
 
+## File Structure
+The entire python package is contained within the `src` directory. Within src, the directory `kannadamnist_module` contains the entire model, pipeline and related utilities:
+
+* `config` contains the config file for the model and pipeline
+* `datasets` contains the kaggle datasets for training and validating the model
+* `model` contains the neural network model structure
+* `my_utils` contains several utility functions and classes for data handling, model training and model evaluation
+* `output` is where any output for the model is stored. This includes train/validation loss and accuracy curves, as well as the final submission csv file.
+
 ## Output files
 The model will output several files in the directory `/src/kannadamnist_module/output`. Here there are 3 directories:
  
@@ -55,12 +64,3 @@ https://www.kaggle.com/code/markdunbar/kannadamnist-cnn/edit/run/107590957
 
 The kaggle score for this model is shown below:
 ![image](https://user-images.githubusercontent.com/57494763/195201716-44566628-6f87-4f95-b214-395703c1aa7d.png)
-
-## File Structure
-The entire python package is contained within the `src` directory. Within src, the directory `kannadamnist_module` contains the entire model, pipeline and related utilities:
-
-* `config` contains the config file for the model and pipeline
-* `datasets` contains the kaggle datasets for training and validating the model
-* `model` contains the neural network model structure
-* `my_utils` contains several utility functions and classes for data handling, model training and model evaluation
-* `output` is where any output for the model is stored. This includes train/validation loss and accuracy curves, as well as the final submission csv file.
