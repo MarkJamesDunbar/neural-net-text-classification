@@ -1,5 +1,5 @@
 import torch.nn.functional as F
-from . import model_eval
+from model_eval import get_num_correct
 
 def train_model(network, device, optimizer, scheduler, training_data, batch_size):
     """Trains the model using the training data"""
