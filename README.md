@@ -6,23 +6,23 @@
 Create a virtual environment within the inside the `Neural-Network-for-Kannada-MNIST-Classification` directory before installing dependencies.
 
 #### Windows
-To create the virtual environment, run:
+* To create the virtual environment, run:
 `python -m venv <venv name>`
 
-To activate the virtual environment, run:
+* To activate the virtual environment, run:
 `<venv name>/Scripts/activate.bat`
 
-And to use an existing virtual environment, run:
+* And to use an existing virtual environment, run:
 `source <venv name>/Scripts/activate`
 
 #### Mac OS
-Create the virtual environment by running
+* Create the virtual environment by running
 `python -m venv <venv name>`
 
-To activate the virtual environment, run:
+* To activate the virtual environment, run:
 `<venv name>/bin/activate`
 
-And to use an existing virtual environment, run:
+* And to use an existing virtual environment, run:
 `source venv/bin/activate`
 
 ### Install requirements
