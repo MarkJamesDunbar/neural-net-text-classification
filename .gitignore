@@ -1,5 +1,11 @@
 *venv
 
+*.pyc
+*.pyo
+
+build/
+dist/
+
 src/kannadamnist_module/output/model_evaluation/*
 src/kannadamnist_module/output/sample_data/*
 src/kannadamnist_module/output/submission_file/*
