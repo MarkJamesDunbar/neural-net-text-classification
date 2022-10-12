@@ -37,7 +37,7 @@ def eval_model(network, device, validation_data, validation_set_size, batch_size
     print("Validation Loss: ", val_loss)
     print("Validation Acc:  ", (val_correct/validation_set_size)*100)
     # Return loss and accuracy values
-    return val_loss, ((val_correct/validation_set_size)*100)
+    return val_loss/batch_size, ((val_correct/validation_set_size)*100)
 
 def get_n_params(model):
     """Summarizes the number of parameters in the neural network"""

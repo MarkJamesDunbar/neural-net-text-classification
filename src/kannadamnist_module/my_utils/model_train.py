@@ -21,4 +21,4 @@ def train_model(network, device, optimizer, scheduler, training_data, batch_size
         epoch_correct += mle.get_num_correct(y_, y)    
     
     scheduler.step()
-    return optimizer.param_groups[0]["lr"], epoch_loss, epoch_correct/len(training_data)
+    return optimizer.param_groups[0]["lr"], epoch_loss/batch_size, epoch_correct/len(training_data)
