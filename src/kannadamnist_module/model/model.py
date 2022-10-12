@@ -37,7 +37,7 @@ class Network(nn.Module):
         self.out = nn.Linear(in_features=64, out_features=10) # output
         
         # Dropout Layers
-        self.dropout = nn.Dropout(0.2)
+        self.dropout = nn.Dropout(0.4)
     
     def forward(self, z):
         
