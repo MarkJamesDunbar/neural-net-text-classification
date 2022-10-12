@@ -23,7 +23,7 @@ Create a virtual environment within the inside the `Neural-Network-for-Kannada-M
 `<venv name>/bin/activate`
 
 * And to use an existing virtual environment, run:
-`source venv/bin/activate`
+`source <venv name>/bin/activate`
 
 ### Install requirements
 To set up the requirements for this python package, please run:
