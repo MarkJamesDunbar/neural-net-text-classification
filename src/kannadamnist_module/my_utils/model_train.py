@@ -9,16 +9,25 @@ def train_model(network, device, optimizer, scheduler, training_data, batch_size
     network.train() # training mode
     
     for images, labels in training_data:
-        X, y = images.to(device), labels.to(device) # put X & y on device
-        y_ = network(X) # get predictions
+        # Put data on device
+        X, y = images.to(device), labels.to(device)
+        # Obtain predictions
+        y_ = network(X)
         
-        optimizer.zero_grad() # zeros out the gradients
-        loss = F.cross_entropy(y_, y) # computes the loss
-        loss.backward() # computes the gradients
-        optimizer.step() # updates weights
+        # Zero the gradients
+        optimizer.zero_grad()
+        # Calculate the loss
+        loss = F.cross_entropy(y_, y)
+        # Compute the gradients
+        loss.backward()
+        # Update weights
+        optimizer.step()
         
         epoch_loss += loss.item() * batch_size
         epoch_correct += mle.get_num_correct(y_, y)    
+    
+    print("Train Loss: ", epoch_loss/batch_size)
+    print("Train Acc:  ", epoch_correct/len(training_data))
     
     scheduler.step()
     return optimizer.param_groups[0]["lr"], epoch_loss/batch_size, epoch_correct/len(training_data)
