@@ -1,6 +1,8 @@
 # Neural-Network-for-Kannada-MNIST-Classification
  Kannada MNIST Convolutional Neural Network for the Kannada MNIST challenge on kaggle, found here: https://www.kaggle.com/competitions/Kannada-MNIST
 
+ The notebook and official kaggle score for this package can be found here: https://www.kaggle.com/code/markdunbar/kannadamnist-cnn?scriptVersionId=107768942
+
 ## Setup
 ### Virtual Environment
 Create a virtual environment within the inside the `Neural-Network-for-Kannada-MNIST-Classification` directory before installing dependencies.
